@@ -1,0 +1,7 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /spring-boot-testing
+spring:
+  application:
+    name: spring boot testing
