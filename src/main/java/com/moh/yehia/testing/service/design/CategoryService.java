@@ -6,7 +6,7 @@ import com.moh.yehia.testing.model.CategoryRequest;
 import java.util.List;
 
 public interface CategoryService {
-    List<Category> finaAll();
+    List<Category> findAll();
 
     Category findById(String categoryId);
 
