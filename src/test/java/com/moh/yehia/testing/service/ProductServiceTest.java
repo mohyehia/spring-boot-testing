@@ -18,7 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.*;
 
-import static com.moh.yehia.testing.service.asserts.ProjectAssertions.assertThat;
+import static com.moh.yehia.testing.asserts.ProjectAssertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {

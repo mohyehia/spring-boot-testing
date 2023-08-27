@@ -238,10 +238,10 @@ Otherwise, our controller tests will become fat and unmaintainable.
 |-----|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1   | Listen to HTTP Requests | **No,** because the unit test would not evaluate the `@PostMapping` annotation and similar annotations specifying the properties of a HTTP request.                                                       |
 | 2   | Deserialize Input       | **No,** because annotations like @RequestParam and `@PathVariable` would not be evaluated. Instead we would provide the input as Java objects, effectively skipping deserialization from an HTTP request. |
-| 3   | Validate Input          | The controller is the first line of defense against bad input, so it's a place where we can validate the input.                                                                                           |
-| 4   | Call the Business Logic | Having parsed the input, the controller must transform the input into the model expected by the business logic and pass it on to the business logic.                                                      |
-| 5   | Serialize the Output    | The controller takes the output of the business logic and serializes it into an HTTP response.                                                                                                            |
-| 6   | Translate Exceptions    | If an exception occurs somewhere on the way, the controller should translate it into a meaningful error message and HTTP status for the user.                                                             |
+| 3   | Validate Input          | **No** Not when depending on bean validation, because the `@Valid` annotation would not be evaluated.                                                                                                     |
+| 4   | Call the Business Logic | **Yes**, because we can verify if the mocked business logic has been called with the expected arguments.                                                                                                  |
+| 5   | Serialize the Output    | **No**, because we can only verify the Java version of the output, and not the HTTP response that would be generated.                                                                                     |
+| 6   | Translate Exceptions    | **No** We could check if a certain exception was raised, but not that it was translated to a certain JSON response or HTTP status code.                                                                   |
 
 
 - A simple unit test will not cover the HTTP layer.

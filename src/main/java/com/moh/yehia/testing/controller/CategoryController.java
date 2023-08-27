@@ -6,6 +6,7 @@ import com.moh.yehia.testing.model.CategoryRequest;
 import com.moh.yehia.testing.service.design.CategoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,6 +34,7 @@ public class CategoryController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Category save(@Valid @RequestBody CategoryRequest categoryRequest) {
         return categoryService.save(categoryRequest);
     }

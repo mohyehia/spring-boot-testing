@@ -1,4 +1,4 @@
-package com.moh.yehia.testing.service.asserts;
+package com.moh.yehia.testing.asserts;
 
 import com.moh.yehia.testing.model.Product;
 import org.assertj.core.api.AbstractAssert;
