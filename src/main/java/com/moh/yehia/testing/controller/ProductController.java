@@ -6,6 +6,7 @@ import com.moh.yehia.testing.model.ProductRequest;
 import com.moh.yehia.testing.service.design.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,17 +26,18 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product findById(@PathVariable("id") String id){
+    public Product findById(@PathVariable("id") String id) {
         log.info("ProductController :: findById :: start");
         Product product = productService.findById(id);
-        if (product == null){
+        if (product == null) {
             throw new InvalidRequestException("Product not found with this id: " + id);
         }
         return product;
     }
 
     @PostMapping
-    public Product save(@Valid @RequestBody ProductRequest productRequest){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product save(@Valid @RequestBody ProductRequest productRequest) {
         log.info("ProductController :: save :: start");
         return productService.save(productRequest);
     }
