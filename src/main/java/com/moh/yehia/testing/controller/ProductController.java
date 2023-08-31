@@ -41,4 +41,10 @@ public class ProductController {
         log.info("ProductController :: save :: start");
         return productService.save(productRequest);
     }
+
+    @PutMapping("/{id}")
+    public Product update(@PathVariable("id") String id, @RequestBody ProductRequest productRequest) {
+        log.info("ProductController :: update :: start");
+        return new Product();
+    }
 }
