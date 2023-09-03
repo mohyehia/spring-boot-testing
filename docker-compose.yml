@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mongo-db:
+    container_name: mongo-db
+    image: mongo:7.0.0
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    expose:
+      - '27017'
+    volumes:
+      - ./volumes/mongo:/data/db
