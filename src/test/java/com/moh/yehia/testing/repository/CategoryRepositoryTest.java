@@ -2,17 +2,14 @@ package com.moh.yehia.testing.repository;
 
 import com.moh.yehia.testing.model.Category;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Testcontainers
 @DataMongoTest
 class CategoryRepositoryTest extends BaseMongoContainer {
 
@@ -22,11 +19,6 @@ class CategoryRepositoryTest extends BaseMongoContainer {
     @AfterEach
     void clearUp() {
         categoryRepository.deleteAll();
-    }
-
-    @AfterAll
-    static void reset() {
-        MONGO_DB_CONTAINER.stop();
     }
 
     @Test
