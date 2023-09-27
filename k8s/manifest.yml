@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-testing
+  template:
+    metadata:
+      labels:
+        app: spring-boot-testing
+    spec:
+      containers:
+        - name: spring-boot-testing-ctr
+          image: mohyehia99/spring-boot-testing:0.0.2
+          ports:
+            - containerPort: 9090
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-testing
+spec:
+  type: ClusterIP
+  selector:
+    app: spring-boot-testing
+  ports:
+    - port: 8080
+      targetPort: 9090
+      protocol: TCP
