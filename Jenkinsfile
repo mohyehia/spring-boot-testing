@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh 'docker build -t mohyehia99/spring-boot-testing:0.0.2 .'
+                sh 'docker build -t mohyehia99/spring-boot-testing:0.0.3 .'
             }
         }
         stage('Docker Push') {
