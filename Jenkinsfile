@@ -34,7 +34,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUsername')]) {
                     sh "docker login -u ${env.dockerHubUsername} -p ${env.dockerHubPassword}"
-                    sh 'docker push mohyehia99/spring-boot-testing:0.0.2'
+                    sh 'docker push mohyehia99/spring-boot-testing:0.0.3'
                 }
             }
         }
