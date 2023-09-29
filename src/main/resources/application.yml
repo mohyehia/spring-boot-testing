@@ -5,6 +5,3 @@ server:
 spring:
   application:
     name: spring boot testing
-  data:
-    mongodb:
-      uri: mongodb://mongo-db:27017/product-service

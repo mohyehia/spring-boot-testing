@@ -69,7 +69,7 @@ class CategoryServiceTest {
         CategoryRequest categoryRequest = populateRandomCategoryRequest();
         Category category = populateSavedCategory(categoryRequest);
         // given
-        BDDMockito.given(categoryRepository.save(ArgumentMatchers.any(Category.class))).willReturn(category);
+        BDDMockito.given(categoryRepository.save(ArgumentMatchers.any(CategoryRequest.class))).willReturn(category);
         // when
         Category savedCategory = categoryService.save(categoryRequest);
         // then or assertions

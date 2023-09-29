@@ -71,7 +71,7 @@ class ProductServiceTest {
         ProductRequest productRequest = populateRandomPRoductRequest();
         Product product = populateValidProduct(productRequest);
         // given
-        BDDMockito.given(productRepository.save(ArgumentMatchers.any(Product.class))).willReturn(product);
+        BDDMockito.given(productRepository.save(ArgumentMatchers.any(ProductRequest.class))).willReturn(product);
         // when
         Product savedProduct = productService.save(productRequest);
         // then or assertions
