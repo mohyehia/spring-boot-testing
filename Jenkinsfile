@@ -4,6 +4,11 @@ pipeline {
     tools {
         maven 'Maven 3.9.4'
     }
+
+    environment {
+        BUILD_VERSION = '0.0.4'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -27,14 +32,14 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh 'docker build -t mohyehia99/spring-boot-testing:0.0.3 .'
+                sh "docker build -t mohyehia99/spring-boot-testing:${BUILD_VERSION} ."
             }
         }
         stage('Docker Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUsername')]) {
                     sh "docker login -u ${env.dockerHubUsername} -p ${env.dockerHubPassword}"
-                    sh 'docker push mohyehia99/spring-boot-testing:0.0.3'
+                    sh "docker push mohyehia99/spring-boot-testing:${BUILD_VERSION}"
                 }
             }
         }
