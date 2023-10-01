@@ -30,6 +30,11 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('Publish test results') {
+            steps {
+                junit '**/test-results/test/*.xml'
+            }
+        }
         stage('Docker Build') {
             steps {
                 sh "docker build -t mohyehia99/spring-boot-testing:${BUILD_VERSION} ."
