@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Publish test results') {
             steps {
-                junit '**/test-results/test/*.xml'
+                junit '**/surefire-reports/test/*.xml'
             }
         }
         stage('Docker Build') {
