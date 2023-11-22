@@ -3,6 +3,7 @@ package com.moh.yehia.testing.advice;
 import com.moh.yehia.testing.exception.InvalidRequestException;
 import com.moh.yehia.testing.model.ApiError;
 import com.moh.yehia.testing.model.ValidationError;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.List;
 
 @ControllerAdvice
+@Log4j2
 public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(InvalidRequestException.class)
     public ResponseEntity<ApiError> handleInvalidRequest(InvalidRequestException e, WebRequest webRequest) {
-        e.printStackTrace();
+        log.error(e.getMessage(), e);
         return new ResponseEntity<>(
                 new ApiError("INVALID_REQUEST", e.getMessage(), webRequest.getDescription(false)),
                 HttpStatus.BAD_REQUEST
