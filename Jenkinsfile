@@ -22,7 +22,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv(credentialsId: 'sonarQube-token', installationName: 'SonarQube') {
                     sh "mvn verify sonar:sonar -Dsonar.projectKey=spring-boot-testing -Dsonar.projectName='spring-boot-testing'"
                 }
             }
