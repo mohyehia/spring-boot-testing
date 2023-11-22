@@ -15,6 +15,11 @@ pipeline {
                 git branch: 'main_without_db', url: 'https://github.com/mohyehia/spring-boot-testing'
             }
         }
+        stage('SonarQube Analysis') {
+            withSonarQubeEnv(credentialsId: 'sonarQube-token') {
+                sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=spring-boot-testing -Dsonar.projectName='spring-boot-testing'"
+            }
+        }
         stage('Clean') {
             steps {
                 sh 'mvn clean'
