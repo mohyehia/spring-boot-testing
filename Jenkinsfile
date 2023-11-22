@@ -27,6 +27,11 @@ pipeline {
                 }
             }
         }
+        stage('Quality Gate') {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
         stage('Test') {
             steps {
                 sh 'mvn test'
