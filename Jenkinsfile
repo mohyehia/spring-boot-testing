@@ -21,8 +21,10 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            withSonarQubeEnv('SonarQube') {
-                sh "mvn verify sonar:sonar -Dsonar.projectKey=spring-boot-testing -Dsonar.projectName='spring-boot-testing'"
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh "mvn verify sonar:sonar -Dsonar.projectKey=spring-boot-testing -Dsonar.projectName='spring-boot-testing'"
+                }
             }
         }
         stage('Test') {
