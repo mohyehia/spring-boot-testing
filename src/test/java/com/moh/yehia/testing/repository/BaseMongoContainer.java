@@ -9,13 +9,12 @@ public abstract class BaseMongoContainer {
     static final MongoDBContainer MONGO_DB_CONTAINER;
 
     static {
-        MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:7.0.1"))
-                .withReuse(true);
+        MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:latest"));
         MONGO_DB_CONTAINER.start();
     }
 
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry dynamicPropertyRegistry) {
-        dynamicPropertyRegistry.add("spring.data.mongo.uri", MONGO_DB_CONTAINER::getReplicaSetUrl);
+        dynamicPropertyRegistry.add("spring.data.mongodb.uri", MONGO_DB_CONTAINER::getReplicaSetUrl);
     }
 }
