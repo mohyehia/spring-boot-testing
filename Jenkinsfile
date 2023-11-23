@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main_without_db', url: 'https://github.com/mohyehia/spring-boot-testing'
+                git branch: 'main', url: 'https://github.com/mohyehia/spring-boot-testing'
             }
         }
         stage('Clean') {
