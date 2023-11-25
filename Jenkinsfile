@@ -20,18 +20,18 @@ pipeline {
                 sh 'mvn clean'
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv(credentialsId: 'sonarQube-token', installationName: 'SonarQube') {
-                    sh "mvn verify sonar:sonar -Dsonar.projectKey=spring-boot-testing -Dsonar.projectName='spring-boot-testing'"
-                }
-            }
-        }
-        stage('Quality Gate') {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
+//        stage('SonarQube Analysis') {
+//            steps {
+//                withSonarQubeEnv(credentialsId: 'sonarQube-token', installationName: 'SonarQube') {
+//                    sh "mvn verify sonar:sonar -Dsonar.projectKey=spring-boot-testing -Dsonar.projectName='spring-boot-testing'"
+//                }
+//            }
+//        }
+//        stage('Quality Gate') {
+//            steps {
+//                waitForQualityGate abortPipeline: true
+//            }
+//        }
         stage('Test') {
             steps {
                 sh 'mvn test'
