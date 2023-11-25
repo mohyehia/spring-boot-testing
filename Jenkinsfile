@@ -20,7 +20,7 @@ pipeline {
                 sh 'mvn clean'
             }
         }
-        stage('SonarQube Analysis') {
+        stage('SonarQube Analysis & Run Tests') {
             steps {
                 withSonarQubeEnv(credentialsId: 'sonarQube-token', installationName: 'SonarQube') {
                     sh "mvn verify sonar:sonar -Dsonar.projectKey=spring-boot-testing -Dsonar.projectName='spring-boot-testing'"
@@ -30,11 +30,6 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 waitForQualityGate abortPipeline: true
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
             }
         }
         stage('Package') {
