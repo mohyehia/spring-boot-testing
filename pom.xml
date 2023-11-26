@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.moh.yehia</groupId>
     <artifactId>spring-boot-testing</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.5</version>
     <name>spring-boot-testing</name>
     <description>Demo project for Spring Boot Testing using Junit &amp; Mockito</description>
     <properties>
@@ -102,7 +102,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <builder>paketobuildpacks/builder-jammy-base:latest</builder>
+                        <name>mohyehia99/${project.name}:${project.version}</name>
+                        <publish>false</publish>
                     </image>
                     <excludes>
                         <exclude>

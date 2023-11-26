@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        BUILD_VERSION = '0.0.4'
+        BUILD_VERSION = '0.0.5'
     }
 
     stages {
@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh "docker build -t mohyehia99/spring-boot-testing:${BUILD_VERSION} ."
+                sh "mvn spring-boot:build-image -DskipTests"
             }
         }
         stage('Docker Push') {
