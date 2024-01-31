@@ -4,12 +4,12 @@ import com.moh.yehia.testing.exception.InvalidRequestException;
 import com.moh.yehia.testing.model.Category;
 import com.moh.yehia.testing.model.CategoryRequest;
 import com.moh.yehia.testing.service.design.CategoryService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
