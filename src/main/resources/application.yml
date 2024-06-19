@@ -7,4 +7,4 @@ spring:
     name: spring boot testing
   data:
     mongodb:
-      uri: mongodb://mongo-db:27017/product-service
+      uri: mongodb://localhost:27017/product-service
