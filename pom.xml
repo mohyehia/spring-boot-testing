@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.moh.yehia</groupId>
     <artifactId>spring-boot-testing</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <name>spring-boot-testing</name>
     <description>Demo project for Spring Boot Testing using Junit &amp; Mockito</description>
     <properties>
@@ -102,13 +102,16 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
+                        <env>
+                            <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
+                        </env>
                         <name>mohyehia99/${project.name}:${project.version}</name>
                         <publish>true</publish>
                     </image>
                     <docker>
                         <publishRegistry>
-                            <username>${docker_username}</username>
-                            <password>${docker_password}</password>
+                            <username>{docker_username}</username>
+                            <password>{docker_password}</password>
                         </publishRegistry>
                     </docker>
                     <excludes>
