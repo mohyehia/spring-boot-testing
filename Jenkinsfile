@@ -6,8 +6,8 @@ pipeline {
     }
 
     environment {
-        pomFile = readFile 'pom.xml';
-        BUILD_VERSION = '${pomFile.project.version}';
+        pom = readMavenPom file: 'pom.xml'
+        BUILD_VERSION = pom.version
     }
 
     stages {
