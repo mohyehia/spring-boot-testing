@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.4'
+        maven 'Maven 3.9.8'
     }
 
     environment {
-        BUILD_VERSION = '0.0.5'
+        BUILD_VERSION = '0.0.6'
     }
 
     stages {
@@ -15,15 +15,15 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/mohyehia/spring-boot-testing'
             }
         }
-        stage('Clean') {
+        stage('Unit Testing') {
             steps {
-                sh 'mvn clean'
+                sh 'mvn clean test'
             }
         }
-        stage('SonarQube Analysis & Run Tests') {
+        stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(credentialsId: 'sonarQube-token', installationName: 'SonarQube') {
-                    sh "mvn verify sonar:sonar -Dsonar.projectKey=spring-boot-testing -Dsonar.projectName='spring-boot-testing'"
+                    sh "mvn verify sonar:sonar -DskipTests=true -Dsonar.projectKey=spring-boot-testing -Dsonar.projectName='spring-boot-testing'"
                 }
             }
         }
