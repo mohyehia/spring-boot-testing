@@ -52,7 +52,6 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerHubUsername', passwordVariable: 'dockerHubPassword')]) {
                     sh "docker login -u ${env.dockerHubUsername} -p ${env.dockerHubPassword}"
-                    echo "build version extracted from pom.xml file" + ${BUILD_VERSION}
                     sh "docker push mohyehia99/spring-boot-testing:${BUILD_VERSION}"
                 }
             }
