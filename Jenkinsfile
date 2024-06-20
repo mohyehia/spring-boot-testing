@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        pomFile = readMavenPom file: '';
+        pomFile = readFile 'pom.xml';
         BUILD_VERSION = '${pomFile.project.version}';
     }
 
