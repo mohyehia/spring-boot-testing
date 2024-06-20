@@ -49,7 +49,7 @@ pipeline {
         }
         stage('Docker Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUsername')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerHubUsername', passwordVariable: 'dockerHubPassword')]) {
                     sh "docker login -u ${env.dockerHubUsername} -p ${env.dockerHubPassword}"
                     sh "docker push mohyehia99/spring-boot-testing:${BUILD_VERSION}"
                 }

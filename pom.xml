@@ -106,12 +106,12 @@
                             <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
                         </env>
                         <name>mohyehia99/${project.name}:${project.version}</name>
-                        <publish>true</publish>
+                        <publish>false</publish>
                     </image>
                     <docker>
                         <publishRegistry>
-                            <username>{docker_username}</username>
-                            <password>{docker_password}</password>
+                            <username>${docker_username}</username>
+                            <password>${docker_password}</password>
                         </publishRegistry>
                     </docker>
                     <excludes>
