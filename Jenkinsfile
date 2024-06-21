@@ -56,9 +56,7 @@ pipeline {
 
         stage('Trivy FS Scan') {
             steps {
-                def trivyOutput = sh (script: 'trivy fs .', returnStdout: true).trim()
-                // Display Trivy scan results
-                println trivyOutput
+                sh 'trivy fs .'
             }
         }
 
@@ -70,7 +68,7 @@ pipeline {
 
         stage('Trivy Image Scan') {
             steps {
-                sh 'trivy image mohyehia99/spring-boot-testing:${BUILD_VERSION} > trivy.txt'
+                sh 'trivy image mohyehia99/spring-boot-testing:${BUILD_VERSION}'
             }
         }
 
