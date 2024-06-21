@@ -27,11 +27,11 @@ pipeline {
                 }
             }
         }
-//        stage('Quality Gate') {
-//            steps {
-//                waitForQualityGate abortPipeline: true
-//            }
-//        }
+        stage('Quality Gate') {
+            steps {
+                waitForQualityGate abortPipeline: true, credentialsId: 'sonarQube-token'
+            }
+        }
         stage('Package') {
             steps {
                 sh 'mvn package -Dmaven.test.skip'
