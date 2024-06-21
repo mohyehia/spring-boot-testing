@@ -54,6 +54,12 @@ pipeline {
             }
         }
 
+        stage('Trivy FS Scan') {
+            steps {
+                sh 'trivy fs . > trivy-fs.txt'
+            }
+        }
+
         stage('Docker Build') {
             steps {
                 sh "mvn spring-boot:build-image -DskipTests"
