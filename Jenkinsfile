@@ -56,7 +56,9 @@ pipeline {
 
         stage('Trivy FS Scan') {
             steps {
-                sh 'trivy fs . > trivy-fs.txt'
+                def trivyOutput = sh (script: 'trivy fs .', returnStdout: true).trim()
+                // Display Trivy scan results
+                println trivyOutput
             }
         }
 
