@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         BUILD_VERSION = readMavenPom().getVersion()
-        DOCKER_IMAGE = 'mohyehia99/spring-boot-testing'
+        DOCKER_IMAGE = 'spring-boot-testing'
     }
 
     stages {
@@ -94,7 +94,7 @@ pipeline {
         stage('Update K8s Manifests') {
             steps {
                 sh "cat k8s/manifest.yml"
-                sh 'sed -i "s/${DOCKER_IMAGE}.*/${DOCKER_IMAGE}:${BUILD_VERSION}/g" k8s/manifest.yml'
+                sh "sed -i 's/${DOCKER_IMAGE}.*/${DOCKER_IMAGE}:${BUILD_VERSION}/g' k8s/manifest.yml"
                 sh "cat k8s/manifest.yml"
             }
         }
