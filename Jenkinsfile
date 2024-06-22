@@ -10,6 +10,15 @@ pipeline {
     }
 
     stages {
+
+        stage('Clean Workspace') {
+            steps {
+                script {
+                    cleanWs()
+                }
+            }
+        }
+
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/mohyehia/spring-boot-testing'
