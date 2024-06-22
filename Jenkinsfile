@@ -102,11 +102,13 @@ pipeline {
         stage('Push manifests to github') {
             steps{
                 sh """
+                    git config --global user.email "mohammedyehia99@gmail.com"
+                    git config --global user.name "mohyehia"
                     git add k8s/manifest.yml
                     git commit -m "Update manifest.yml file"
                 """
                 withCredentials([usernamePassword(credentialsId: 'github-token', passwordVariable: 'gitPassword', usernameVariable: 'gitUsername')]) {
-                    sh "git push https://${env.gitUsername}:${env.gitPassword}@github.com/mohyehia99/spring-boot-testing.git main"
+                    sh "git push https://${env.gitUsername}:${env.gitPassword}@github.com/mohyehia/spring-boot-testing.git main"
                 }
             }
         }
