@@ -104,7 +104,7 @@ pipeline {
                 sh """
                     git config user.email "mohammedyehia99@gmail.com"
                     git config user.name "mohyehia"
-                    git rm dependency-check-*
+                    git rm -r --cached .
                     git add k8s/manifest.yml
                     git commit -m "Update manifest.yml file"
                 """
