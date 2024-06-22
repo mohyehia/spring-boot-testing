@@ -60,7 +60,7 @@ pipeline {
                     -s './\'
                     -f 'ALL'
                     --prettyPrint''', odcInstallation: 'OWASP Dependency Check'
-                dependencyCheckPublisher pattern: 'owasp/dependency-check-report.xml'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
 
@@ -104,6 +104,7 @@ pipeline {
                 sh """
                     git config user.email "mohammedyehia99@gmail.com"
                     git config user.name "mohyehia"
+                    git rm dependency-check-*
                     git add k8s/manifest.yml
                     git commit -m "Update manifest.yml file"
                 """
