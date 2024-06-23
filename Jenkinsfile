@@ -53,16 +53,16 @@ pipeline {
             }
         }
 
-//        stage('OWASP Dependency Check') {
-//            steps{
-//                dependencyCheck additionalArguments: '''
-//                    -o './\'
-//                    -s './\'
-//                    -f 'ALL'
-//                    --prettyPrint''', odcInstallation: 'OWASP Dependency Check'
-//                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-//            }
-//        }
+        stage('OWASP Dependency Check') {
+            steps {
+                dependencyCheck additionalArguments: '''
+                    -o './\'
+                    -s './\'
+                    -f 'ALL'
+                    --prettyPrint''', odcInstallation: 'OWASP Dependency Check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
 
         stage('Trivy FS Scan') {
             steps {
@@ -91,25 +91,9 @@ pipeline {
             }
         }
 
-        stage('Update K8s Manifests') {
+        stage('Trigger microservices-k8s-manifests Job') {
             steps {
-                sh "cat k8s/manifest.yml"
-                sh "sed -i 's|${DOCKER_IMAGE}.*|${DOCKER_IMAGE}:${BUILD_VERSION}|g' k8s/manifest.yml"
-                sh "cat k8s/manifest.yml"
-            }
-        }
-
-        stage('Push manifests to github') {
-            steps{
-                sh """
-                    git config user.email "mohammedyehia99@gmail.com"
-                    git config user.name "mohyehia"
-                    git add k8s/manifest.yml
-                    git commit -m "Update manifest.yml file"
-                """
-                withCredentials([usernamePassword(credentialsId: 'github-token', passwordVariable: 'gitPassword', usernameVariable: 'gitUsername')]) {
-                    sh "git push https://${env.gitUsername}:${env.gitPassword}@github.com/mohyehia/spring-boot-testing.git main"
-                }
+                sh "curl -v -k --user admin:11295d15cb5acb2914d803b4d62222b728 -X POST -H 'cache-control: no-cache' -H 'Content-Type: application/json' -d '{DOCKER_IMAGE: ${DOCKER_IMAGE}, BUILD_VERSION: ${BUILD_VERSION}}' http://localhost:8080/job/microservices-k8s-manifests/buildWithParameters?token=spring-microservices-in-action-token"
             }
         }
     }
