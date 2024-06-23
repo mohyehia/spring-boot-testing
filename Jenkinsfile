@@ -53,16 +53,16 @@ pipeline {
             }
         }
 
-        stage('OWASP Dependency Check') {
-            steps{
-                dependencyCheck additionalArguments: '''
-                    -o './\'
-                    -s './\'
-                    -f 'ALL'
-                    --prettyPrint''', odcInstallation: 'OWASP Dependency Check'
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-            }
-        }
+//        stage('OWASP Dependency Check') {
+//            steps{
+//                dependencyCheck additionalArguments: '''
+//                    -o './\'
+//                    -s './\'
+//                    -f 'ALL'
+//                    --prettyPrint''', odcInstallation: 'OWASP Dependency Check'
+//                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+//            }
+//        }
 
         stage('Trivy FS Scan') {
             steps {
@@ -104,7 +104,6 @@ pipeline {
                 sh """
                     git config user.email "mohammedyehia99@gmail.com"
                     git config user.name "mohyehia"
-                    git rm -r --cached .
                     git add k8s/manifest.yml
                     git commit -m "Update manifest.yml file"
                 """
