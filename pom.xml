@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.moh.yehia</groupId>
     <artifactId>spring-boot-testing</artifactId>
-    <version>0.0.7</version>
+    <version>0.0.8</version>
     <name>spring-boot-testing</name>
     <description>Demo project for Spring Boot Testing using Junit &amp; Mockito</description>
     <properties>

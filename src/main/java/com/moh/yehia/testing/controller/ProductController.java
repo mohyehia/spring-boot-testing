@@ -45,6 +45,6 @@ public class ProductController {
     @PutMapping("/{id}")
     public Product update(@PathVariable("id") String id, @RequestBody ProductRequest productRequest) {
         log.info("ProductController :: update :: start");
-        return new Product();
+        return new Product(id, productRequest.getName(), productRequest.getDescription(), productRequest.getPrice(), productRequest.getStock(), productRequest.getCategoryId());
     }
 }
