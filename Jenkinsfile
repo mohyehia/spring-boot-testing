@@ -93,7 +93,7 @@ pipeline {
 
         stage('Trigger microservices-k8s-manifests Job') {
             steps {
-                sh "curl -v -k --user admin:11295d15cb5acb2914d803b4d62222b728 -X POST -H 'cache-control: no-cache' -H 'Content-Type: application/json' -d '{DOCKER_IMAGE: ${DOCKER_IMAGE}, BUILD_VERSION: ${BUILD_VERSION}}' http://localhost:8080/job/microservices-k8s-manifests/buildWithParameters?token=spring-microservices-in-action-token"
+                sh "curl -v -k --user admin:11295d15cb5acb2914d803b4d62222b728 -X POST -H 'cache-control: no-cache' -H 'Content-Type: application/x-www-form-urlencoded' --data 'DOCKER_IMAGE: ${DOCKER_IMAGE}&BUILD_VERSION: ${BUILD_VERSION}' http://localhost:8080/job/microservices-k8s-manifests/buildWithParameters?token=spring-microservices-in-action-token"
             }
         }
     }
